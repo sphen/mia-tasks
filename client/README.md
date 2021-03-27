@@ -1,3 +1,3 @@
 # mia tasks
 
-Dead sexy, super streamlined task manegment app.
+Streamlined task manegment app with a hint of RGB.
