@@ -44,7 +44,7 @@ npm run client
 - Link repo with your new Heroku app.
 - ✨Magic ✨
 
-View the Heroku Docs on [Deploying with Git](https://devcenter.heroku.com/articles/git) for more detailed steps.
+View the Heroku Docs on [Heroku GitHub Deploys](https://devcenter.heroku.com/articles/github-integration) for more detailed steps.
 
 ## App Info
 
