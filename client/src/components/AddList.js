@@ -1,10 +1,13 @@
 import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { ToDoContext } from '../context/ToDoState';
+import { Alert } from './Alert';
 import Plus from '../svg/Plus';
 
 const AddList = ({ onShow, onCreate }) => {
   const [text, setText] = useState('');
+  const [alert, setAlert] = useState('');
   const { createList } = useContext(ToDoContext);
   const { openList } = useContext(ToDoContext);
   const history = useHistory();
@@ -35,7 +38,7 @@ const AddList = ({ onShow, onCreate }) => {
       items: [],
       finished: 0,
     };
-    !text ? alert('please add a list title') : create(newList);
+    !text ? setAlert('please add a list title') : create(newList);
     setText('');
   };
 
@@ -44,7 +47,19 @@ const AddList = ({ onShow, onCreate }) => {
       <form className='list-form'>
         <div className='add-todo'>
           <h1 className='title'>Enter a name for your list:</h1>
-          <div className='add-task'>
+          <TransitionGroup component='div' className='add-task'>
+            {alert ? (
+              <CSSTransition
+                in={true}
+                appear={true}
+                timeout={500}
+                classNames='alert'
+              >
+                <Alert alert={alert} setAlert={setAlert} />
+              </CSSTransition>
+            ) : (
+              ''
+            )}
             <input
               type='text'
               value={text}
@@ -57,7 +72,7 @@ const AddList = ({ onShow, onCreate }) => {
             <button className='new-list-btn' onClick={submitList}>
               <Plus />
             </button>
-          </div>
+          </TransitionGroup>
         </div>
         <button className='btn new-todo' onClick={submitList}>
           create list

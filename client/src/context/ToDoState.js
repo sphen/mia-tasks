@@ -54,13 +54,6 @@ export const ToDoProvider = ({ children }) => {
     }
   }
 
-  // function addToDo(todo) {
-  //   dispatch({
-  //     type: 'ADD_TODO',
-  //     payload: todo,
-  //   });
-  // }
-
   async function completeToDo(id, itemId) {
     try {
       await axios.post(`/api/todos/${id}/${itemId}/setcomplete`);
@@ -76,13 +69,6 @@ export const ToDoProvider = ({ children }) => {
     }
   }
 
-  // function completeToDo(id) {
-  //   dispatch({
-  //     type: 'COMPLETE_TODO',
-  //     payload: id,
-  //   });
-  // }
-
   async function deleteToDo(id, itemId) {
     try {
       await axios.delete(`/api/todos/${id}/${itemId}`);
@@ -97,13 +83,6 @@ export const ToDoProvider = ({ children }) => {
       });
     }
   }
-
-  // function deleteToDo(id) {
-  //   dispatch({
-  //     type: 'DELETE_TODO',
-  //     payload: id,
-  //   });
-  // }
 
   function openList(list) {
     dispatch({
@@ -133,13 +112,6 @@ export const ToDoProvider = ({ children }) => {
     }
   }
 
-  // function createList(list) {
-  //   dispatch({
-  //     type: 'CREATE_LIST',
-  //     payload: list,
-  //   });
-  // }
-
   async function deleteList(id) {
     try {
       await axios.delete(`/api/todos/${id}`);
@@ -154,13 +126,6 @@ export const ToDoProvider = ({ children }) => {
       });
     }
   }
-
-  // function deleteList(id) {
-  //   dispatch({
-  //     type: 'DELETE_LIST',
-  //     payload: id,
-  //   });
-  // }
 
   function toDash(list) {
     dispatch({

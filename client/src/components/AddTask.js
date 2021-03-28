@@ -1,9 +1,12 @@
 import { useState, useContext } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { ToDoContext } from '../context/ToDoState';
+import { Alert } from './Alert';
 import Plus from '../svg/Plus';
 
 export const AddTask = () => {
   const [text, setText] = useState('');
+  const [alert, setAlert] = useState('');
   const { activeList, addToDo, todos } = useContext(ToDoContext);
 
   const submitToDo = (e) => {
@@ -13,7 +16,7 @@ export const AddTask = () => {
       complete: false,
     };
     console.log(activeList);
-    !text ? alert('please add a task') : addToDo(activeList, newToDo);
+    !text ? setAlert('please add a task') : addToDo(activeList, newToDo);
     setText('');
   };
 
@@ -22,7 +25,19 @@ export const AddTask = () => {
       <form>
         <div className='add-todo'>
           <h1 className='title'>{todos.title}</h1>
-          <div className='add-task'>
+          <TransitionGroup component='div' className='add-task'>
+            {alert ? (
+              <CSSTransition
+                in={true}
+                appear={true}
+                timeout={500}
+                classNames='alert'
+              >
+                <Alert alert={alert} setAlert={setAlert} />
+              </CSSTransition>
+            ) : (
+              ''
+            )}
             <input
               type='text'
               value={text}
@@ -35,7 +50,7 @@ export const AddTask = () => {
             <button className='todo-button' onClick={submitToDo}>
               <Plus />
             </button>
-          </div>
+          </TransitionGroup>
         </div>
       </form>
     </div>
