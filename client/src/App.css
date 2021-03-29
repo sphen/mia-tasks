@@ -269,7 +269,7 @@ h2 {
 .site-logo:hover::after,
 .site-logo:hover::before {
   color: #000;
-  cursor: default;
+  cursor: pointer;
   transform: scaleY(1);
 }
 
