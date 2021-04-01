@@ -16,7 +16,7 @@ const Dashboard = ({ onCreate }) => {
   return (
     <div className='card'>
       <div className='todo-dash'>
-        <h1 className='title'>To Do List Dashboard</h1>
+        <h1 className='title'>Dashboard</h1>
         <TransitionGroup component='ul' className='list-of-lists'>
           {lists
             ? lists.map((list) => (
