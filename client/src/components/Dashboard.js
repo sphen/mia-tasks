@@ -1,10 +1,12 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { ToDoContext } from '../context/ToDoState';
 import { List } from '../components/List';
+import Settings from '../svg/Settings';
 
 const Dashboard = ({ onCreate }) => {
   const { lists, getLists } = useContext(ToDoContext);
+  const [setting, setSetting] = useState(false);
 
   console.log(lists);
 
@@ -16,7 +18,18 @@ const Dashboard = ({ onCreate }) => {
   return (
     <div className='card'>
       <div className='todo-dash'>
-        <h1 className='title'>Dashboard</h1>
+        <div className='title'>
+          <h1>Dashboard</h1>
+          <button
+            className='settings-btn'
+            onClick={() => {
+              setSetting(!setting);
+            }}
+          >
+            <Settings />
+          </button>
+        </div>
+
         <TransitionGroup component='ul' className='list-of-lists'>
           {lists
             ? lists.map((list) => (
@@ -27,7 +40,12 @@ const Dashboard = ({ onCreate }) => {
                   timeout={500}
                   classNames='fade'
                 >
-                  <List key={list._id} list={list} onCreate={onCreate} />
+                  <List
+                    key={list._id}
+                    list={list}
+                    onCreate={onCreate}
+                    setting={setting}
+                  />
                 </CSSTransition>
               ))
             : ''}
