@@ -54,8 +54,6 @@ View the Heroku Docs on [Heroku GitHub Deploys](https://devcenter.heroku.com/art
 - [ ] Authentication
 - [ ] Tests with Jest 
 
-View the Heroku Docs on [Heroku GitHub Deploys](https://devcenter.heroku.com/articles/github-integration) for more detailed steps.
-
 ## App Info
 
 #### Author
