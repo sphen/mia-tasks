@@ -48,6 +48,14 @@ npm run client
 
 View the Heroku Docs on [Heroku GitHub Deploys](https://devcenter.heroku.com/articles/github-integration) for more detailed steps.
 
+## Road Map
+
+- [x] Design Updates (ongoing)
+- [ ] Authentication
+- [ ] Tests with Jest 
+
+View the Heroku Docs on [Heroku GitHub Deploys](https://devcenter.heroku.com/articles/github-integration) for more detailed steps.
+
 ## App Info
 
 #### Author
