@@ -3,15 +3,18 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { ToDoContext } from '../context/ToDoState';
 import { List } from '../components/List';
 import Settings from '../svg/Settings';
+import { AuthContext } from '../context/AuthState';
 
 const Dashboard = ({ onCreate }) => {
   const { lists, getLists } = useContext(ToDoContext);
+  const { loadUser } = useContext(AuthContext);
   const [setting, setSetting] = useState(false);
 
-  console.log(lists);
+  // console.log(lists);
 
   useEffect(() => {
     getLists();
+    loadUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

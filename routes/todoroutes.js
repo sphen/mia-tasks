@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../middleware/auth');
 const {
   getItems,
   getTodos,
@@ -9,6 +10,8 @@ const {
   createList,
   deleteList,
 } = require('../controllers/todocontroller');
+
+router.all('*', auth);
 
 router.route('/').get(getTodos).post(createList);
 

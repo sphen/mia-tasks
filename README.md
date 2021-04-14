@@ -51,8 +51,9 @@ View the Heroku Docs on [Heroku GitHub Deploys](https://devcenter.heroku.com/art
 ## Road Map
 
 - [x] Design Updates (ongoing)
-- [ ] Authentication
-- [ ] Tests with Jest 
+- [x] Basic Authentication Functionality
+- [ ] Tests with Jest
+- [ ] Expand Authentication (Private Projects, etc.)
 
 ## App Info
 

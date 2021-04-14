@@ -1,3 +1,3 @@
-# mia tasks
+# Mia Tasks
 
-Streamlined task manegment app with a hint of RGB.
+##### _An effecient MERN task manager without all the extras._

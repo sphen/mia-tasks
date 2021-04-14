@@ -16,6 +16,10 @@
   --gold: #ffd500;
   --aqua: #2febd2;
   --orange: #ff6700;
+
+  --blue-grad: linear-gradient(to left, var(--blue), var(--aqua));
+  --green-grad: linear-gradient(to right, var(--green), var(--aqua));
+  --purp-grad: linear-gradient(to right, var(--purple), var(--pink));
 }
 
 /* RESET
@@ -304,7 +308,54 @@ form {
 
 .list-form {
   align-content: center;
+  background-color: transparent;
+  position: relative;
+  margin: auto 0;
+  justify-content: stretch;
   margin: 0;
+}
+
+.reg-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.reg-form-group {
+  align-items: center;
+  display: grid;
+  grid-template-columns: minmax(10px, 1fr);
+  grid-auto-rows: minmax(10px, 1fr);
+  position: relative;
+  width: 100%;
+}
+
+.auth-label {
+  align-self: end;
+  color: var(--light-grey);
+  font-size: 12px;
+  line-height: 1;
+}
+
+.log-input {
+  border-bottom: 2px solid var(--grey);
+  caret-color: var(--green);
+  padding: 0;
+}
+
+.log-input::selection {
+  background: var(--green);
+  color: var(--black);
+}
+
+.reg-input {
+  border-bottom: 2px solid var(--grey);
+  caret-color: var(--blue);
+  padding: 0;
+}
+
+.reg-input::selection {
+  background: var(--blue);
+  color: var(--black);
 }
 
 form input,
@@ -485,20 +536,20 @@ progress[value]::-webkit-progress-bar {
 
 progress[value]::-webkit-progress-value {
   position: relative;
-  background: linear-gradient(to left, var(--blue), var(--aqua));
+  background: var(--blue-grad);
   box-shadow: 0px 0px 6px 0px rgba(45, 205, 255, 0.4);
   border-radius: 0;
 }
 
 progress::-moz-progress-bar {
   position: relative;
-  background: linear-gradient(to left, var(--blue), var(--aqua));
+  background: var(--blue-grad);
   box-shadow: 0px 0px 6px 0px rgba(45, 205, 255, 0.4);
 }
 
 .list-count {
   color: var(--black);
-  background: linear-gradient(to left, var(--blue), var(--aqua));
+  background: var(--blue-grad);
   border-radius: 1rem;
   font-size: 12px;
   padding: 0.422rem 0.563rem;
@@ -704,7 +755,41 @@ button {
   background: var(--blue);
 }
 
-form .new-todo {
+.register-btn {
+  background: var(--blue-grad);
+  font-weight: 700;
+}
+.register-btn::after {
+  background: var(--blue-grad);
+}
+
+.login-btn {
+  background: var(--green-grad);
+  font-weight: 700;
+}
+.login-btn::after {
+  background: var(--green-grad);
+}
+
+.log-reg-link {
+  margin-top: 1.777rem;
+}
+
+.log-reg-link a {
+  color: var(--aqua);
+  text-decoration: underline;
+  transition: all 300ms ease;
+}
+
+.log-link:hover {
+  color: var(--blue);
+}
+
+.reg-link:hover {
+  color: var(--green);
+}
+
+form .btn {
   line-height: 1;
   margin-top: 1.777rem;
   padding: 0 1.333rem;
@@ -796,6 +881,7 @@ form .new-todo {
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
+  min-height: 100%;
   padding: 0.563rem;
   position: absolute;
   top: 0;
@@ -809,6 +895,7 @@ form .new-todo {
   background: var(--pink);
   border: none;
   content: '';
+  filter: blur(0.5rem);
   position: absolute;
   top: 0;
   right: 0;
@@ -816,10 +903,6 @@ form .new-todo {
   height: 100%;
   text-decoration: none;
   z-index: -1;
-}
-
-.alert::after {
-  filter: blur(0.5rem);
 }
 
 .alertclosebtn {
@@ -837,6 +920,7 @@ form .new-todo {
 
 .alert p {
   line-height: 1;
+  padding-right: 1rem;
 }
 
 /* alert transitions */

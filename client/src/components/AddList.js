@@ -75,7 +75,7 @@ const AddList = ({ onShow, onCreate }) => {
           </TransitionGroup>
         </div>
         <button className='btn new-todo' onClick={submitList}>
-          create list
+          Create List
         </button>
       </form>
     </div>

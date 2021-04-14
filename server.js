@@ -11,9 +11,6 @@ dotenv.config({ path: './.env' });
 // connect to database
 connectDB();
 
-// require routes
-const todoroutes = require('./routes/todoroutes');
-
 // create app variable
 const app = express();
 
@@ -25,8 +22,28 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-// use routes
-app.use('/api/todos', todoroutes);
+// routes
+app.use('/api/todos', require('./routes/todoroutes'));
+app.use('/api/users', require('./routes/userroutes'));
+app.use('/api/auth', require('./routes/authroutes'));
+app.use((req, res, next) => {
+  const render = res.render;
+  const send = res.send;
+  res.render = function renderWrapper(...args) {
+    Error.captureStackTrace(this);
+    return render.apply(this, args);
+  };
+  res.send = function sendWrapper(...args) {
+    try {
+      send.apply(this, args);
+    } catch (err) {
+      console.error(
+        `Error in res.send | ${err.code} | ${err.message} | ${res.stack}`
+      );
+    }
+  };
+  next();
+});
 
 //  serve static in production\
 if (process.env.NODE_ENV === 'production') {

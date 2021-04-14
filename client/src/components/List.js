@@ -66,14 +66,3 @@ export const List = ({ list, onCreate, setting }) => {
     </div>
   );
 };
-
-{
-  /* <button
-        className='trash-btn'
-        onClick={() => {
-          deleteList(list._id);
-        }}
-      >
-        <Trash />
-      </button> */
-}

@@ -8,7 +8,7 @@ export const MyLists = () => {
   return (
     <>
       <Link to='/' className='btn my-lists' onClick={() => toDash(todos)}>
-        dashboard
+        Dashboard
       </Link>
     </>
   );

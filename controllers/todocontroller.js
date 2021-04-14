@@ -6,6 +6,7 @@ const List = require('../models/List');
 // get all todos
 // GET /api/todos
 // public
+
 exports.getTodos = async (req, res, next) => {
   try {
     const todos = await List.find();
@@ -227,7 +228,7 @@ exports.completeTodo = async (req, res, next) => {
     item.complete = !item.complete;
     await list.save(function (err) {
       if (err) return handleError(err);
-      console.log('the todo item was updated');
+      console.log('The Todo Item Was Updated');
     });
 
     // await list.remove();

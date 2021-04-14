@@ -18,9 +18,27 @@ export const ToDoContext = createContext(initialState);
 export const ToDoProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
+  function tokenConfig() {
+    // get token
+    const token = localStorage.getItem('token');
+    // headers
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    // if token add to headers
+    if (token) {
+      config.headers['x-auth-token'] = token;
+    }
+
+    return config;
+  }
+
   async function getLists() {
+    console.log(tokenConfig());
     try {
-      const res = await axios.get('api/todos');
+      const res = await axios.get('api/todos', tokenConfig());
 
       dispatch({
         type: 'GET_LISTS',
@@ -35,13 +53,8 @@ export const ToDoProvider = ({ children }) => {
   }
 
   async function addToDo(id, todo) {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
     try {
-      const res = await axios.post(`/api/todos/${id}`, todo, config);
+      const res = await axios.post(`/api/todos/${id}`, todo, tokenConfig());
       dispatch({
         type: 'ADD_TODO',
         payload: res.data.data,
@@ -56,7 +69,12 @@ export const ToDoProvider = ({ children }) => {
 
   async function completeToDo(id, itemId) {
     try {
-      await axios.post(`/api/todos/${id}/${itemId}/setcomplete`);
+      console.log(tokenConfig());
+      await axios.post(
+        `/api/todos/${id}/${itemId}/setcomplete`,
+        '',
+        tokenConfig()
+      );
       dispatch({
         type: 'COMPLETE_TODO',
         payload: itemId,
@@ -71,7 +89,7 @@ export const ToDoProvider = ({ children }) => {
 
   async function deleteToDo(id, itemId) {
     try {
-      await axios.delete(`/api/todos/${id}/${itemId}`);
+      await axios.delete(`/api/todos/${id}/${itemId}`, tokenConfig());
       dispatch({
         type: 'DELETE_TODO',
         payload: itemId,
@@ -92,14 +110,8 @@ export const ToDoProvider = ({ children }) => {
   }
 
   async function createList(list) {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
     try {
-      const res = await axios.post('/api/todos', list, config);
+      const res = await axios.post('/api/todos', list, tokenConfig());
       dispatch({
         type: 'CREATE_LIST',
         payload: res.data.data,
@@ -114,7 +126,7 @@ export const ToDoProvider = ({ children }) => {
 
   async function deleteList(id) {
     try {
-      await axios.delete(`/api/todos/${id}`);
+      await axios.delete(`/api/todos/${id}`, tokenConfig());
       dispatch({
         type: 'DELETE_LIST',
         payload: id,
