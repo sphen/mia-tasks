@@ -1,7 +1,12 @@
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthState';
+
 export const Alert = ({ alert, setAlert }) => {
+  const { clearErrors } = useContext(AuthContext);
   const clearAlert = (e) => {
     e.preventDefault();
     setAlert('');
+    clearErrors();
   };
   return (
     <div className='alert'>

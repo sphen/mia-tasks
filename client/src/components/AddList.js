@@ -18,6 +18,7 @@ const AddList = ({ onShow, onCreate }) => {
     onCreate();
     history.push('/');
     onShow();
+    setAlert(null);
   };
   // const submitList = (event) => {
   //   event.preventDefault();
@@ -46,8 +47,8 @@ const AddList = ({ onShow, onCreate }) => {
     <div className='card list'>
       <form className='list-form'>
         <div className='add-todo'>
-          <h1 className='title'>Enter a name for your list:</h1>
-          <TransitionGroup component='div' className='add-task'>
+          <h1 className='title page-title'>Start a new project</h1>
+          <TransitionGroup component='div' className='add add-list'>
             {alert ? (
               <CSSTransition
                 in={true}
@@ -60,13 +61,17 @@ const AddList = ({ onShow, onCreate }) => {
             ) : (
               ''
             )}
+            <label htmlFor='add-list' className='label add-label'>
+              Project Name:
+            </label>
             <input
               type='text'
               value={text}
               onChange={(e) => setText(e.target.value)}
               onSubmit={submitList}
               className='todo-input'
-              placeholder='add a list title'
+              name='add-list'
+              placeholder='Project Name'
               autoFocus
             ></input>
             <button className='new-list-btn' onClick={submitList}>
@@ -75,7 +80,7 @@ const AddList = ({ onShow, onCreate }) => {
           </TransitionGroup>
         </div>
         <button className='btn new-todo' onClick={submitList}>
-          create list
+          Create Project
         </button>
       </form>
     </div>

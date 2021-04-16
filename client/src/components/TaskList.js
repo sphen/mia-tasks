@@ -14,7 +14,7 @@ export const TaskList = () => {
 
   return (
     <div className='card list'>
-      <h2 id='todo-title'>To Do</h2>
+      <h2 className='todo-title'>To Do</h2>
 
       <div className='todo-container add-to-list fade'>
         <TransitionGroup component='ul' className='todo-list' id='todo-list'>
@@ -47,7 +47,7 @@ export const TaskList = () => {
         )}
       </div>
 
-      <h2 id='todo-title'>Completed</h2>
+      <h2 className='todo-title'>Completed</h2>
       <div className='completed-todo fade' id='completed-todo'>
         <TransitionGroup
           component='ul'

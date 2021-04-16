@@ -16,6 +16,10 @@
   --gold: #ffd500;
   --aqua: #2febd2;
   --orange: #ff6700;
+
+  --blue-grad: linear-gradient(to left, var(--blue), var(--aqua));
+  --green-grad: linear-gradient(to right, var(--green), var(--aqua));
+  --purp-grad: linear-gradient(to right, var(--purple), var(--pink));
 }
 
 /* RESET
@@ -161,6 +165,7 @@ table {
 
 * {
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 a {
@@ -192,11 +197,15 @@ body {
   min-height: 50vh;
 }
 
+.auth-page {
+  align-content: start;
+}
+
 .card {
   background-color: transparent;
   border-radius: 0;
   display: grid;
-  gap: 1.777rem;
+  gap: 1.333rem;
   margin: 0 auto;
   max-width: 100%;
   padding: 0 3.157rem;
@@ -205,22 +214,25 @@ body {
 
 /* header styles */
 
+h1,
+h2 {
+  font-family: 'Poppins', sans-serif;
+}
+
 header,
 h1 {
-  font-family: 'Poppins', sans-serif;
   font-size: max(20px, min(11.86px + 1.41vw, 39px));
   line-height: max(30px, min(15.43px + 2.53vw, 64px));
 }
 
 h2 {
-  font-family: 'Poppins', sans-serif;
   font-size: max(18px, min(12.5px + 1.05vw, 30px));
   line-height: 1.6;
 }
 
 .site-logo {
   display: inline-block;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1;
   padding: 0.563rem;
   position: relative;
@@ -281,7 +293,7 @@ footer {
 }
 
 header {
-  margin-top: 3.157rem;
+  margin-top: 1.333rem;
   grid-row-start: 1;
   grid-row-end: 2;
 }
@@ -302,32 +314,117 @@ form {
   justify-content: stretch;
 }
 
+input {
+  color: var(--white);
+  font-size: 16px;
+  line-height: 1;
+}
+
+input::placeholder {
+  color: var(--light-grey);
+  font-size: 12px;
+}
+
 .list-form {
   align-content: center;
+  background-color: transparent;
+  position: relative;
+  margin: auto 0;
+  justify-content: stretch;
   margin: 0;
 }
 
-form input,
-form button {
+.reg-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.reg-form-group {
+  align-items: center;
+  display: grid;
+  grid-template-columns: minmax(10px, 1fr);
+  grid-auto-rows: minmax(10px, 1fr);
+  position: relative;
+  width: 100%;
+}
+
+.label {
+  color: var(--light-grey);
+  font-size: 12px;
+  line-height: 1;
+}
+
+.auth-label {
+  align-self: end;
+  margin-bottom: 0.563rem;
+}
+
+.auth-input {
+  background: var(--dark-grey);
+  border: 1px solid var(--black);
+  border-radius: 8px;
+  padding: 0.563rem 1rem;
+  transition: all 250ms ease;
+}
+
+.log-input {
+  caret-color: var(--green);
+}
+
+.log-input:hover,
+.log-input:focus {
+  box-shadow: 0 0 0 3px rgba(157, 255, 111, 0.2);
+}
+
+.log-input:focus {
+  border: 1px solid var(--green);
+}
+
+.log-input::selection {
+  background: var(--green);
+  color: var(--black);
+}
+
+.reg-input {
+  caret-color: var(--blue);
+}
+
+.reg-input:hover,
+.reg-input:focus {
+  box-shadow: 0 0 0 3px rgba(45, 205, 255, 0.2);
+}
+
+.reg-input:focus {
+  border: 1px solid var(--blue);
+}
+
+.reg-input::selection {
+  background: var(--blue);
+  color: var(--black);
+}
+
+.todo-input,
+.todo-input + button {
   background: none;
   border: none;
   color: #ffffff;
   font-size: 16px;
   font-family: 'Poppins', sans-serif;
-  min-height: 2.369rem;
-}
-
-.todo-input,
-.todo-button {
-  grid-row: 1;
+  grid-row: 2;
   z-index: 1;
 }
 
-form input {
-  caret-color: var(--orange);
+.todo-input {
+  caret-color: var(--white);
+  margin-left: 0.5rem;
 }
-form input::selection {
-  background: var(--orange);
+
+.todo-button {
+  margin-right: 0.5rem;
+}
+
+.todo-input::selection {
+  background: var(--aqua);
 }
 
 form button {
@@ -335,26 +432,61 @@ form button {
   transition: all 250ms linear;
 }
 
-.add-task {
-  background: none;
-  border-bottom: 1px solid var(--grey);
-  border-radius: 0;
+.add {
+  background: var(--dark-grey);
+  border: 1px solid var(--black);
+  border-radius: 8px;
   display: grid;
   grid-template-columns: minmax(10px, 1fr) min-content;
-  padding: 0.563rem;
+  padding: 0.563rem 0.5rem;
   position: relative;
+  transition: all 300ms ease;
 }
 
-h1,
-h2 {
+.add-task {
+  background: var(--dark-grey);
+  border: 1px solid var(--black);
+  border-radius: 8px;
   display: grid;
-  justify-items: center;
-  align-items: end;
-  padding-bottom: 1.333rem;
+  grid-template-columns: minmax(10px, 1fr) min-content;
+  padding: 0.563rem 0.5rem;
+  position: relative;
+  transition: all 300ms ease;
+}
+
+.add-task:hover,
+.add-task:focus-within {
+  box-shadow: 0 0 0 3px rgba(47, 235, 210, 0.2);
+}
+
+.add-task:focus-within {
+  border-color: var(--aqua);
+}
+
+.add-list:hover,
+.add-list:focus-within {
+  box-shadow: 0 0 0 3px rgba(45, 205, 255, 0.2);
+}
+
+.add-list:focus-within {
+  border-color: var(--blue);
+}
+
+.add-label {
+  position: absolute;
+  top: -50%;
+  left: 0.5rem;
+  opacity: 0;
+  transition: all 300ms ease;
+}
+
+.add:focus-within > .add-label {
+  opacity: 1;
 }
 
 .add-todo {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 /* todo/dash list styles */
@@ -369,7 +501,7 @@ h2 {
 
 .todo-list,
 .completed-list {
-  background: var(--dark-grey);
+  background: none;
   border-radius: 8px;
   width: 100%;
   list-style: none;
@@ -401,16 +533,6 @@ h2 {
   text-align: center;
 }
 
-.todo-list {
-  min-width: 100%;
-  background: var(--dark-grey);
-  color: #ffffff;
-  display: grid;
-  align-items: center;
-  position: relative;
-  transition: all 250ms ease;
-}
-
 .todo {
   min-width: 100%;
   background: none;
@@ -428,13 +550,19 @@ h2 {
   cursor: default;
 }
 
-.list-of-lists .todo {
+.list-item {
+  min-width: 100%;
   background: var(--dark-grey);
   border-radius: 8px;
-  padding: 0;
+  color: #ffffff;
+  display: grid;
+  align-items: center;
+  position: relative;
+  transition: all 250ms ease;
 }
 
-.list-of-lists .todo:hover {
+.list-item:hover {
+  background: var(--grey);
   cursor: pointer;
 }
 
@@ -478,27 +606,27 @@ progress[value] {
 
 progress,
 progress[value]::-webkit-progress-bar {
-  background-color: var(--grey);
+  background-color: var(--black);
   border: none;
   border-radius: 0;
 }
 
 progress[value]::-webkit-progress-value {
   position: relative;
-  background: linear-gradient(to left, var(--blue), var(--aqua));
+  background: var(--blue-grad);
   box-shadow: 0px 0px 6px 0px rgba(45, 205, 255, 0.4);
   border-radius: 0;
 }
 
 progress::-moz-progress-bar {
   position: relative;
-  background: linear-gradient(to left, var(--blue), var(--aqua));
+  background: var(--blue-grad);
   box-shadow: 0px 0px 6px 0px rgba(45, 205, 255, 0.4);
 }
 
 .list-count {
   color: var(--black);
-  background: linear-gradient(to left, var(--blue), var(--aqua));
+  background: var(--blue-grad);
   border-radius: 1rem;
   font-size: 12px;
   padding: 0.422rem 0.563rem;
@@ -514,15 +642,19 @@ progress::-moz-progress-bar {
   text-decoration: line-through;
 }
 
-#todo-title {
+.todo-title {
   border-bottom: 0.1rem solid var(--grey);
-  font-weight: bold;
-  margin-top: 1.777rem;
+  font-weight: 700;
+  padding-bottom: 1.333rem;
 }
 
 .title {
-  font-weight: bold;
-  text-align: center;
+  font-weight: 700;
+  text-align: left;
+}
+
+.page-title {
+  padding-bottom: 1.333rem;
 }
 
 .todo-dash .title {
@@ -591,12 +723,12 @@ button {
 }
 
 .todo-button svg {
-  stroke: var(--orange);
+  stroke: var(--aqua);
 }
 
 .todo-button:hover svg {
-  -webkit-filter: drop-shadow(0 0 0.422rem rgba(255, 103, 0, 0.4));
-  filter: drop-shadow(0 0 0.422rem rgba(255, 103, 0, 0.4));
+  -webkit-filter: drop-shadow(0 0 0.422rem rgba(47, 235, 113, 0.4));
+  filter: drop-shadow(0 0 0.422rem rgba(47, 235, 210, 0.4));
 }
 
 .open-list-btn:hover svg,
@@ -649,12 +781,14 @@ button {
 
 .btn {
   background: var(--light-grey);
+  border: none;
   border-radius: 8px;
   color: var(--black);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Poppins', sans-serif;
+  font-size: 14px;
   height: 48px;
   line-height: 1;
   margin: 0 auto;
@@ -677,11 +811,12 @@ button {
   bottom: 0;
   text-decoration: none;
   transition: all 300ms ease;
-  z-index: -1;
+  z-index: -10;
 }
 
 .btn:hover::after {
   filter: blur(0.5rem);
+  z-index: -10;
 }
 
 .back:hover,
@@ -704,7 +839,41 @@ button {
   background: var(--blue);
 }
 
-form .new-todo {
+.register-btn {
+  background: var(--blue-grad);
+  font-weight: 700;
+}
+.register-btn::after {
+  background: var(--blue-grad);
+}
+
+.login-btn {
+  background: var(--green-grad);
+  font-weight: 700;
+}
+.login-btn::after {
+  background: var(--green-grad);
+}
+
+.log-reg-link {
+  margin-top: 1.777rem;
+}
+
+.log-reg-link a {
+  color: var(--aqua);
+  text-decoration: underline;
+  transition: all 300ms ease;
+}
+
+.log-link:hover {
+  color: var(--blue);
+}
+
+.reg-link:hover {
+  color: var(--green);
+}
+
+form .btn {
   line-height: 1;
   margin-top: 1.777rem;
   padding: 0 1.333rem;
@@ -742,7 +911,7 @@ form .new-todo {
   opacity: 1;
   max-height: 8rem;
   padding: 1rem;
-  transition: all 500ms ease;
+  transition: all 300ms ease;
 }
 
 .fade-appear-done {
@@ -752,14 +921,14 @@ form .new-todo {
 
 .fade-enter {
   opacity: 0;
-  padding: 0;
+  padding: 0 1rem;
 }
 
 .fade-enter.fade-enter-active {
   max-height: 8rem;
   opacity: 1;
   padding: 1rem;
-  transition: all 500ms ease;
+  transition: all 300ms ease;
 }
 .fade-enter-done {
   max-height: 8rem;
@@ -776,14 +945,14 @@ form .new-todo {
 .fade-exit.fade-exit-active {
   max-height: 0;
   opacity: 0;
-  padding: 0;
-  transition: all 500ms ease;
+  padding: 0 1rem;
+  transition: all 300ms ease;
 }
 
 .fade-exit-done {
   max-height: 0;
   opacity: 0;
-  padding: 0;
+  padding: 0 1rem;
 }
 
 /*  alert */
@@ -791,13 +960,13 @@ form .new-todo {
 .alert {
   align-items: center;
   background: var(--pink);
-  border-radius: 8px;
   color: white;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 15px;
+  min-height: 5vh;
+  min-width: 100%;
   padding: 0.563rem;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
@@ -809,6 +978,7 @@ form .new-todo {
   background: var(--pink);
   border: none;
   content: '';
+  filter: blur(0.5rem);
   position: absolute;
   top: 0;
   right: 0;
@@ -816,10 +986,6 @@ form .new-todo {
   height: 100%;
   text-decoration: none;
   z-index: -1;
-}
-
-.alert::after {
-  filter: blur(0.5rem);
 }
 
 .alertclosebtn {
@@ -837,6 +1003,7 @@ form .new-todo {
 
 .alert p {
   line-height: 1;
+  padding-right: 1rem;
 }
 
 /* alert transitions */
