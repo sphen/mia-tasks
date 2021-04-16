@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { CSSTransition } from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { AuthContext } from '../../context/AuthState';
 
 import { Alert } from '../Alert';
@@ -15,6 +15,7 @@ const Register = ({ setLog }) => {
 
   const create = async (newUser) => {
     await register(newUser);
+    setAlert(null);
   };
 
   const submitUser = (e) => {
@@ -45,7 +46,7 @@ const Register = ({ setLog }) => {
 
   return (
     <form className='reg-form'>
-      <div className='reg-form-group'>
+      <TransitionGroup component='div' className='reg-form-group'>
         {alert ? (
           <CSSTransition
             in={true}
@@ -58,8 +59,8 @@ const Register = ({ setLog }) => {
         ) : (
           ''
         )}
-        <label htmlFor='name' className='auth-label'>
-          Your Name
+        <label htmlFor='name' className='label auth-label'>
+          Name
         </label>
         <input
           type='text'
@@ -67,11 +68,11 @@ const Register = ({ setLog }) => {
           value={name}
           onChange={(e) => setName(e.target.value)}
           onSubmit={submitUser}
-          className='reg-input'
-          placeholder='Name (required)'
+          className='auth-input reg-input'
+          required
         ></input>
-        <label htmlFor='email' className='auth-label'>
-          Your Email
+        <label htmlFor='email' className='label auth-label'>
+          Email
         </label>
         <input
           type='email'
@@ -79,12 +80,12 @@ const Register = ({ setLog }) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           onSubmit={submitUser}
-          className='reg-input'
-          placeholder='Email (required)'
+          className='auth-input reg-input'
+          required
         ></input>
 
-        <label htmlFor='password' className='auth-label'>
-          Your Password (minimum 6 characters)
+        <label htmlFor='password' className='label auth-label'>
+          Password
         </label>
         <input
           type='password'
@@ -92,17 +93,18 @@ const Register = ({ setLog }) => {
           value={pass}
           onChange={(e) => setPass(e.target.value)}
           onSubmit={submitUser}
-          className='reg-input'
-          placeholder='Password (required)'
+          className='auth-input reg-input'
+          placeholder='6+ characters'
+          required
         ></input>
-      </div>
+      </TransitionGroup>
       <button className='btn register-btn' onClick={submitUser}>
         Register
       </button>
       <p className='log-reg-link'>
         Already registered?{' '}
         <Link className='log-link' to='#' onClick={setLog}>
-          Log In
+          Sign In
         </Link>
       </p>
     </form>

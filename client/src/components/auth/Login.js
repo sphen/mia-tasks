@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { CSSTransition } from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { AuthContext } from '../../context/AuthState';
 import { Alert } from '../Alert';
 
@@ -13,6 +13,7 @@ const Login = ({ setLog }) => {
 
   const logUser = async (currentUser) => {
     await login(currentUser);
+    setAlert(null);
   };
 
   const submitUser = (e) => {
@@ -40,7 +41,7 @@ const Login = ({ setLog }) => {
 
   return (
     <form className='reg-form'>
-      <div className='reg-form-group'>
+      <TransitionGroup component='div' className='reg-form-group'>
         {alert ? (
           <CSSTransition
             in={true}
@@ -53,8 +54,8 @@ const Login = ({ setLog }) => {
         ) : (
           ''
         )}
-        <label htmlFor='email' className='auth-label'>
-          Your Email
+        <label htmlFor='email' className='label auth-label'>
+          Email Address
         </label>
         <input
           type='email'
@@ -62,12 +63,12 @@ const Login = ({ setLog }) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           onSubmit={submitUser}
-          className='log-input'
-          placeholder='Email'
+          className='auth-input log-input'
+          aria-required='true'
         ></input>
 
-        <label htmlFor='password' className='auth-label'>
-          Your Password
+        <label htmlFor='password' className='label auth-label'>
+          Password
         </label>
         <input
           type='password'
@@ -75,17 +76,17 @@ const Login = ({ setLog }) => {
           value={pass}
           onChange={(e) => setPass(e.target.value)}
           onSubmit={submitUser}
-          className='log-input'
-          placeholder='Password'
+          className='auth-input log-input'
+          aria-required='true'
         ></input>
-      </div>
+      </TransitionGroup>
       <button className='btn login-btn' onClick={submitUser}>
         Log In
       </button>
       <p className='log-reg-link'>
         Need an account?{' '}
         <Link className='reg-link' to='#' onClick={setLog}>
-          Register Here
+          Sign Up Here
         </Link>
       </p>
     </form>

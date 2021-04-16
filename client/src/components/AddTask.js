@@ -9,23 +9,28 @@ export const AddTask = () => {
   const [alert, setAlert] = useState('');
   const { activeList, addToDo, todos } = useContext(ToDoContext);
 
+  const create = (activeList, newToDo) => {
+    addToDo(activeList, newToDo);
+    setAlert(null);
+  };
+
   const submitToDo = (e) => {
     e.preventDefault();
     const newToDo = {
       text,
       complete: false,
     };
-    console.log(activeList);
-    !text ? setAlert('please add a task') : addToDo(activeList, newToDo);
+    // console.log(activeList);
+    !text ? setAlert('please add a task') : create(activeList, newToDo);
     setText('');
   };
 
   return (
     <div className='card list'>
+      <h1 className='title page-title'>{todos.title}</h1>
       <form>
         <div className='add-todo'>
-          <h1 className='title'>{todos.title}</h1>
-          <TransitionGroup component='div' className='add-task'>
+          <TransitionGroup component='div' className='add add-task'>
             {alert ? (
               <CSSTransition
                 in={true}
@@ -38,13 +43,17 @@ export const AddTask = () => {
             ) : (
               ''
             )}
+            <label htmlFor='add-todo' className='label add-label'>
+              Add Task:
+            </label>
             <input
               type='text'
               value={text}
               onChange={(e) => setText(e.target.value)}
               onSubmit={submitToDo}
               className='todo-input'
-              placeholder='add a task'
+              name='add-todo'
+              placeholder='Add a task'
               autoFocus
             ></input>
             <button className='todo-button' onClick={submitToDo}>

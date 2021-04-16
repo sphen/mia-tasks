@@ -22,7 +22,7 @@ const Dashboard = ({ onCreate }) => {
     <div className='card'>
       <div className='todo-dash'>
         <div className='title'>
-          <h1>Dashboard</h1>
+          <h1 className='page-title'>Dashboard</h1>
           <button
             className='settings-btn'
             onClick={() => {

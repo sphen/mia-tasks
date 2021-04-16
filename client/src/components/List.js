@@ -13,14 +13,16 @@ export const List = ({ list, onCreate, setting }) => {
     : '';
   console.log(list._id);
   return (
-    <div className='todo-list'>
+    <>
       <Link
-        className='todo show'
-        onClick={() => {
+        className='list-item todo show'
+        onClick={(e) => {
+          setting && e.preventDefault();
           openList(list);
           onCreate();
         }}
         to='/tasklist'
+        style={{ cursor: setting && 'default' }}
       >
         <figure className='open-list-btn'>
           <Open />
@@ -44,25 +46,25 @@ export const List = ({ list, onCreate, setting }) => {
           max={numItems}
           value={completed}
         ></progress>
+        <CSSTransition
+          in={setting === true}
+          appear={true}
+          timeout={500}
+          classNames='alert'
+          unmountOnExit
+        >
+          <div className='delete-list'>
+            <button
+              className='trash-btn'
+              onClick={() => {
+                deleteList(list._id);
+              }}
+            >
+              <Trash />
+            </button>
+          </div>
+        </CSSTransition>
       </Link>
-      <CSSTransition
-        in={setting === true}
-        appear={true}
-        timeout={500}
-        classNames='alert'
-        unmountOnExit
-      >
-        <div className='delete-list'>
-          <button
-            className='trash-btn'
-            onClick={() => {
-              deleteList(list._id);
-            }}
-          >
-            <Trash />
-          </button>
-        </div>
-      </CSSTransition>
-    </div>
+    </>
   );
 };

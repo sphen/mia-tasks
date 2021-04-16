@@ -26,7 +26,10 @@ router.post('/', (req, res) => {
     // validate pw
     bcrypt.compare(password, user.password).then((isMatch) => {
       if (!isMatch)
-        return res.status(400).json({ msg: 'Invalid Login Credentials' });
+        return res.status(400).json({
+          msg:
+            'Invalid login credentials. Please check your email and password and try again.',
+        });
 
       jwt.sign(
         { id: user.id },
