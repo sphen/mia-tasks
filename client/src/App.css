@@ -926,13 +926,13 @@ form .btn {
 }
 .fade-appear.fade-appear-active {
   opacity: 1;
-  max-height: 8rem;
+  max-height: 80px;
   padding: 1rem;
   transition: all 300ms ease;
 }
 
 .fade-appear-done {
-  max-height: 8rem;
+  max-height: 80px;
   padding: 1rem;
 }
 
@@ -942,25 +942,21 @@ form .btn {
 }
 
 .fade-enter.fade-enter-active {
-  max-height: 8rem;
+  max-height: 80px;
   opacity: 1;
   padding: 1rem;
   transition: all 300ms ease;
 }
 .fade-enter-done {
-  max-height: 8rem;
+  max-height: 80px;
   opacity: 1;
   padding: 1rem;
 }
 
 .fade-exit {
-  max-height: 8rem;
+  max-height: 80px;
   opacity: 1;
   padding: 1rem;
-}
-
-.fade-exit * {
-  opacity: 1;
 }
 
 .fade-exit.fade-exit-active {
@@ -971,8 +967,7 @@ form .btn {
 }
 
 .fade-exit.fade-exit-active * {
-  height: 0;
-  opacity: 0;
+  display: none;
   transition: all 300ms ease;
 }
 
@@ -982,6 +977,9 @@ form .btn {
   padding: 0 1rem;
 }
 
+.fade-exit-done * {
+  display: none;
+}
 /*  alert */
 
 .alert {
