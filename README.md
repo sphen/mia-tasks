@@ -14,10 +14,19 @@ The app gives me what I need, a snapshot of what has been and what needs to be d
 
 The app is built on the Mongo, Express, React, and Node stack.
 
-Check out the demo app [here](https://miatasks.herokuapp.com). It’s hosted on a heroku free dyno, so it may take a few seconds to wake up.
+**Check out the demo app [here](https://miatasks.herokuapp.com)**. It’s hosted on a heroku free dyno, so it may take a few seconds to wake up.
+
+### Architecture
+
+The app follows an MVC structural pattern:
+
+1. The user views the React web app with a browser.
+2. With both components written in Node.js, the React frontend communicates with the Express backend via RESTful API.
+3. The backend Express application uses the Mongo database for storing and retrieving data.
+4. Backend results are communicated to the the frontend.
+5. Frontend results are rendered to the user via the React web app.
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/sphen/mia-tasks) ![GitHub issues](https://img.shields.io/github/issues-raw/sphen/mia-tasks) ![GitHub](https://img.shields.io/github/license/sphen/mia-tasks)
-
 
 ## Quick Start
 
