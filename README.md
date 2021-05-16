@@ -2,7 +2,7 @@
 
 ##### _An effecient MERN task manager without all the extras._
 
-![mia tasks screenshot](https://github.com/sphen/mia-tasks/blob/main/miatasks.png?raw=true)
+<img src="https://dl.dropboxusercontent.com/s/fnqas3c9dotyw5k/Animation.gif?raw=1" alt="MiaTasks Demo" width="250px" height="auto">
 
 ## About
 
