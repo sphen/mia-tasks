@@ -69,7 +69,7 @@ const Register = ({ setLog }) => {
           onChange={(e) => setName(e.target.value)}
           onSubmit={submitUser}
           className='auth-input reg-input'
-          required
+          aria-required='true'
         ></input>
         <label htmlFor='email' className='label auth-label'>
           Email
@@ -81,7 +81,7 @@ const Register = ({ setLog }) => {
           onChange={(e) => setEmail(e.target.value)}
           onSubmit={submitUser}
           className='auth-input reg-input'
-          required
+          aria-required='true'
         ></input>
 
         <label htmlFor='password' className='label auth-label'>
@@ -95,7 +95,7 @@ const Register = ({ setLog }) => {
           onSubmit={submitUser}
           className='auth-input reg-input'
           placeholder='6+ characters'
-          required
+          aria-required='true'
         ></input>
       </TransitionGroup>
       <button className='btn register-btn' onClick={submitUser}>

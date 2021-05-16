@@ -181,20 +181,30 @@ body {
   background: var(--black);
   background-size: 100%;
   color: var(--white);
-  min-height: 100vh;
+  height: 100vh;
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
   display: grid;
   grid-template-rows: 1fr auto;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .container {
   display: grid;
   gap: 3.157rem;
   grid-template-columns: minmax(10px, 1fr);
-  margin-top: 3.157rem;
   min-height: 50vh;
+  max-height: calc(100vh - 177px);
+  overflow: auto;
+  scrollbar-width: thin; /* Firefox */
+}
+
+.container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: var(--light-grey);
 }
 
 .auth-page {
@@ -293,7 +303,8 @@ footer {
 }
 
 header {
-  margin-top: 1.333rem;
+  height: 65px;
+  margin: 1rem 0;
   grid-row-start: 1;
   grid-row-end: 2;
 }
@@ -301,8 +312,14 @@ header {
 footer {
   gap: 3.157rem;
   grid-template-columns: repeat(2, minmax(10px, 1fr));
-  margin: 4.209rem auto 3.157rem;
-  max-width: 80%;
+  height: 80px;
+  margin: 0 auto;
+  padding: 1rem 0;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 /* form styles */
@@ -942,10 +959,20 @@ form .btn {
   padding: 1rem;
 }
 
+.fade-exit * {
+  opacity: 1;
+}
+
 .fade-exit.fade-exit-active {
   max-height: 0;
   opacity: 0;
   padding: 0 1rem;
+  transition: all 300ms ease;
+}
+
+.fade-exit.fade-exit-active * {
+  height: 0;
+  opacity: 0;
   transition: all 300ms ease;
 }
 
