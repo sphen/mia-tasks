@@ -5,12 +5,13 @@ import { Task } from './Task';
 
 export const TaskList = () => {
   const { todos } = useContext(ToDoContext);
+
   const complete = todos.items
     ? todos.items.filter((todo) => todo.complete === true)
-    : {};
+    : [];
   const incomplete = todos.items
     ? todos.items.filter((todo) => todo.complete === false)
-    : {};
+    : [];
 
   return (
     <div className='card list'>
